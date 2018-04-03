@@ -9,8 +9,8 @@
 const expect = require('expect.js'),
     karmia_context = require('karmia-context'),
     karmia_jsonrpc = require('../'),
-    context = karmia_context(),
-    jsonrpc = karmia_jsonrpc();
+    context = new karmia_context(),
+    jsonrpc = new karmia_jsonrpc();
 
 // RPC
 jsonrpc.methods.set('success', function () {

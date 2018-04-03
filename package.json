@@ -1,6 +1,6 @@
 {
     "name": "karmia-jsonrpc",
-    "version": "0.1.2",
+    "version": "0.2.0",
     "description": "Karmia JSON-RPC 2.0 library",
     "homepage": "https://github.com/fujimakishouten/karmia-jsonrpc",
     "license": "MIT",
@@ -14,8 +14,8 @@
         "test": "./node_modules/.bin/mocha ./test"
     },
     "dependencies": {
-        "karmia-rpc": ">=0.1.2",
-        "karmia-converter-jsonrpc": ">=0.1.0"
+        "karmia-rpc": "^0.2.1",
+        "karmia-converter-jsonrpc": "^0.2.0"
     },
     "devDependencies": {
         "eslint": ">=4.12.0",
