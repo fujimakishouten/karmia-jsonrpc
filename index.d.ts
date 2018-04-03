@@ -9,3 +9,5 @@ declare class KarmiaJSONRPC {
     constructor(options?: object);
     call(context: KarmiaContext, body: Array<object>|object): Promise<any>;
 }
+
+export = KarmiaJSONRPC;
