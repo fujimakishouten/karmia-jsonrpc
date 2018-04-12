@@ -1,6 +1,6 @@
 {
     "name": "karmia-jsonrpc",
-    "version": "0.3.0",
+    "version": "0.3.1",
     "description": "Karmia JSON-RPC 2.0 module.",
     "homepage": "https://github.com/fujimakishouten/karmia-jsonrpc",
     "license": "MIT",
@@ -20,7 +20,7 @@
     "dependencies": {
         "@types/mocha": "^5.0.0",
         "@types/node": "^9.6.2",
-        "karmia-rpc": "^0.3.0",
+        "karmia-rpc": "^0.3.1",
         "karmia-context": "^0.7.1",
         "karmia-converter-jsonrpc": "^0.3.4",
         "typescript": "^2.8.1"
