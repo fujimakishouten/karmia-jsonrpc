@@ -6,8 +6,32 @@
 
 
 // Variables
-const karmia_rpc = require('karmia-rpc'),
-    karmia_converter_jsonrpc = require('karmia-converter-jsonrpc');
+import KarmiaContext = require("karmia-context");
+import KarmiaConverterJSONRPC = require("karmia-converter-jsonrpc");
+import KarmiaRPC = require("karmia-rpc");
+
+
+// Declarations
+declare interface Methods {
+    [index: string]: Function|object;
+}
+
+declare interface Parameters {
+    [index: string]: any;
+}
+
+declare interface JSONRPCRequest {
+    jsonrpc?: string;
+    method?: string;
+    params?: any;
+    id: any;
+}
+
+declare class JSONRPCError extends Error {
+    code?: number;
+    data?: any;
+    [index: string]: any;
+}
 
 
 /**
@@ -17,15 +41,21 @@ const karmia_rpc = require('karmia-rpc'),
  */
 class KarmiaJSONRPC {
     /**
+     * Properties
+     */
+    public methods: KarmiaRPC;
+    public converter: KarmiaConverterJSONRPC;
+
+    /**
      * Constructor
      *
      * @constructs KarmiaJSONRPC
      * @returns {Object}
      */
-    constructor(options) {
+    constructor(options?: Methods) {
         const self = this;
-        self.methods = new karmia_rpc(options);
-        self.converter = new karmia_converter_jsonrpc();
+        self.methods = new KarmiaRPC(options);
+        self.converter = new KarmiaConverterJSONRPC();
     }
 
     /**
@@ -34,13 +64,13 @@ class KarmiaJSONRPC {
      * @param {KarmiaContext} context
      * @param {Array|Object} body
      */
-    call(context, body) {
+    call(context: KarmiaContext, body: Array<Parameters>|Parameters) {
         const self = this,
             batch = Array.isArray(body),
             requests = (batch) ? body : [body],
-            parallels = requests.reduce((collection, request) => {
+            parallels = requests.reduce((collection: Parameters, request: JSONRPCRequest) => {
                 if (!request.method || '2.0' !== request.jsonrpc) {
-                    const error = new Error('Invalid request');
+                    const error = new Error('Invalid request') as JSONRPCError;
                     error.code = -32600;
 
                     collection.push(Promise.resolve(error));
@@ -48,7 +78,7 @@ class KarmiaJSONRPC {
                     return collection;
                 }
 
-                collection.push(self.methods.call(context, request).catch((error) => {
+                collection.push(self.methods.call(context, request).catch((error: Error) => {
                     return Promise.resolve(error);
                 }));
 
@@ -68,7 +98,7 @@ class KarmiaJSONRPC {
 
 
 // Export modules
-module.exports = KarmiaJSONRPC;
+export = KarmiaJSONRPC;
 
 
 

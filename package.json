@@ -1,7 +1,7 @@
 {
     "name": "karmia-jsonrpc",
-    "version": "0.2.2",
-    "description": "Karmia JSON-RPC 2.0 library",
+    "version": "0.3.0",
+    "description": "Karmia JSON-RPC 2.0 module.",
     "homepage": "https://github.com/fujimakishouten/karmia-jsonrpc",
     "license": "MIT",
     "author": "Kazuma Fujimaki <fujimaki-k@fujimakishouten.com>",
@@ -11,23 +11,26 @@
         "url": "https://github.com/fujimakishouten/karmia-jsonrpc.git"
     },
     "scripts": {
-        "cobertura": "./node_modules/.bin/istanbul cover --report cobertura ./node_modules/mocha/bin/_mocha ./test",
-        "coverage": "./node_modules/.bin/istanbul cover --report html ./node_modules/mocha/bin/_mocha ./test",
-        "test": "./node_modules/.bin/mocha ./test"
+        "build": "tsc",
+        "cobertura": "istanbul cover --report cobertura ./node_modules/mocha/bin/_mocha ./test",
+        "coverage": "istanbul cover --report html ./node_modules/mocha/bin/_mocha ./test",
+        "postinstall": "npm run build",
+        "test": "mocha ./test"
     },
     "dependencies": {
-        "karmia-rpc": "^0.2.2",
-        "karmia-converter-jsonrpc": "^0.2.1"
+        "@types/mocha": "^5.0.0",
+        "@types/node": "^9.6.2",
+        "karmia-rpc": "^0.3.0",
+        "karmia-context": "^0.7.1",
+        "karmia-converter-jsonrpc": "^0.3.4",
+        "typescript": "^2.8.1"
     },
     "devDependencies": {
-        "eslint": "^4.19.1",
         "expect.js": "^0.3.1",
         "istanbul": "^1.1.0-alpha.1",
-        "karmia-context": "^0.6.1",
         "mocha": "^5.0.5",
         "tslint": "^5.9.1",
-        "tslint-eslint-rules": "^5.1.0",
-        "typescript": "^2.8.1"
+        "tslint-eslint-rules": "^5.1.0"
     },
     "engines": {
         "node": ">=4.0.0"
