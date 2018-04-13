@@ -1,6 +1,6 @@
 {
     "name": "karmia-jsonrpc",
-    "version": "0.3.1",
+    "version": "0.3.2",
     "description": "Karmia JSON-RPC 2.0 module.",
     "homepage": "https://github.com/fujimakishouten/karmia-jsonrpc",
     "license": "MIT",
